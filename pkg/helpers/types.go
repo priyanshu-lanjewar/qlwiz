@@ -11,6 +11,6 @@ type Group struct {
 }
 
 type Config struct {
-	Links  []Link   `yaml:"links"`
-	Groups []Group  `yaml:"groups"`
+	Links  []Link  `yaml:"links"`
+	Groups []Group `yaml:"groups"`
 }

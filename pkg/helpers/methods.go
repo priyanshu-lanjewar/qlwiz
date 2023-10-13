@@ -2,6 +2,8 @@ package helpers
 
 import (
 	"os"
+	"os/user"
+	"path/filepath"
 
 	"gopkg.in/yaml.v2"
 )
@@ -34,4 +36,21 @@ func WriteConfig(path string, config Config) error {
 	}
 
 	return nil
+}
+
+func ConfigExists() bool {
+	currentUser, err := user.Current()
+	if err != nil {
+		return err == nil
+	}
+
+	homeDir := currentUser.HomeDir
+	folderName := ".qlwiz"
+	folderPath := filepath.Join(homeDir, folderName)
+
+	_, err = os.Stat(folderPath)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return err == nil
 }
