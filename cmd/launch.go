@@ -4,6 +4,8 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/priyanshu-lanjewar/qlwiz/pkg/helpers"
 	"github.com/priyanshu-lanjewar/qlwiz/pkg/links"
 	"github.com/spf13/cobra"
@@ -17,7 +19,8 @@ var launchCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		url := cmd.Flag("url").Value.String()
 		if url == "" {
-			link, _ := links.GetAllLinks()
+			link, e := links.GetAllLinks()
+			fmt.Println(e)
 			linkToLaunch, _ := links.GetLinksToLaunch(link)
 			links.Launch(linkToLaunch)
 		} else {
