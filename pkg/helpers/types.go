@@ -6,8 +6,8 @@ type Link struct {
 }
 
 type Group struct {
-	Name   string   `yaml:"name"`
-	Member []string `yaml:"member"`
+	Name   string `yaml:"name"`
+	Member []Link `yaml:"member"`
 }
 
 type Config struct {

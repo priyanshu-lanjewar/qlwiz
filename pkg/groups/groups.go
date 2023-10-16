@@ -1,4 +1,4 @@
-package links
+package groups
 
 import (
 	"os/user"
@@ -8,10 +8,10 @@ import (
 	"github.com/priyanshu-lanjewar/qlwiz/pkg/helpers"
 )
 
-func GetAllLinks() ([]helpers.Link, error) {
+func GetAllGroups() ([]helpers.Group, error) {
 	currentUser, err := user.Current()
 	if err != nil {
-		return []helpers.Link{}, err
+		return []helpers.Group{}, err
 	}
 
 	homeDir := currentUser.HomeDir
@@ -21,11 +21,10 @@ func GetAllLinks() ([]helpers.Link, error) {
 	filePath := filepath.Join(folderPath, filename)
 	config, err := helpers.ReadConfig(filePath)
 	if err != nil {
-		return []helpers.Link{}, err
+		return []helpers.Group{}, err
 	}
-	sort.Slice(config.Links, func(i, j int) bool {
-		return config.Links[i].Name < config.Links[j].Name
+	sort.Slice(config.Groups, func(i, j int) bool {
+		return config.Groups[i].Name < config.Groups[j].Name
 	})
-	return config.Links, nil
-
+	return config.Groups, nil
 }
