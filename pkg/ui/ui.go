@@ -1,8 +1,6 @@
 package ui
 
 import (
-	"fmt"
-
 	"github.com/getlantern/systray"
 	"github.com/priyanshu-lanjewar/qlwiz/pkg/helpers"
 	"github.com/priyanshu-lanjewar/qlwiz/pkg/icon"
@@ -34,8 +32,6 @@ func OnReady() {
 	mQuitOrig := systray.AddMenuItem("Quit", "Quit the app")
 	go func() {
 		<-mQuitOrig.ClickedCh
-		fmt.Println("Requesting quit")
 		systray.Quit()
-		fmt.Println("Finished quitting")
 	}()
 }
